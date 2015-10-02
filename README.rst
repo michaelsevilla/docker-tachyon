@@ -18,4 +18,7 @@ Setup
 
 1. On all nodes, install Docker using their directions `here <https://docs.docker.com/installation/>`__
 #. ... that's it, actually. 
+=======
+1. On all nodes, install Docker using their directions `here<https://docs.docker.com/installation/>`__
+#. ... 
 
