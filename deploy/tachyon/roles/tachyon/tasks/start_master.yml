@@ -1,0 +1,7 @@
+# Adapted from Tachyon project: https://github.com/amplab/tachyon.git
+# Author: Michael Sevilla
+
+- name: start tachyon master
+  shell: "{{ tachyon }}/bin/tachyon-start.sh master -f"
+
+# vim :set filetype=ansible.yaml:
