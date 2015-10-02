@@ -6,7 +6,16 @@ Hathisar -- The Hadoop intergration testing framework
 
 `Hathisars <http://www.asesg.org/PDFfiles/Gajah/23-01-Glossary.pdf>`__ are elephant stables managed by mahout families in Nepal.
 
-Assumptions
+Directory Structure
 ========
 
-None!
+- ``deploy``: this folder has the Ansible scripts for deploying the systems and running experiments.
+
+- ``install``: this folder has the Docker image scripts for installing the systems. Stuff in here gets built into an image and automatically uploaded to the Docker Hub.
+
+Setup
+========
+
+1. On all nodes, install Docker using their directions `here <https://docs.docker.com/installation/>`__
+#. ... that's it, actually. 
+
