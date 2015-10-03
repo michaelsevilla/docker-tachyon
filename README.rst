@@ -9,6 +9,8 @@ Hathisar -- The Hadoop intergration testing framework
 Directory Structure
 ========
 
+- ``experiments``: where you go to launch experiments. The user should only have to cd to this directory.
+
 - ``deploy``: this folder has the Ansible scripts for deploying the systems and running experiments.
 
 - ``install``: this folder has the Docker image scripts for installing the systems. Stuff in here gets built into an image and automatically uploaded to the Docker Hub.
@@ -17,8 +19,6 @@ Setup
 ========
 
 1. On all nodes, install Docker using their directions `here <https://docs.docker.com/installation/>`__
-#. ... that's it, actually. 
-=======
-1. On all nodes, install Docker using their directions `here<https://docs.docker.com/installation/>`__
-#. ... 
+#. On the node that this code is on (i.e., our ``experiment master``), run: ./deploy/master.sh
+- this will instantiate an Ansible Docker container
 
