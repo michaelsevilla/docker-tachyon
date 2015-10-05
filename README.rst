@@ -1,5 +1,5 @@
 ===================================================
-Hathisar -- The Hadoop intergration testing framework
+Hathisar -- The Hadoop integration testing framework
 ===================================================
 
 ``hathisar`` is an automation framework for Hadoop, written in Bash and Python. It contains scripts for deploying object stores (e.g., Swift), connecting them to Hadoop, running Hadoop jobs, and graphing results. It is based on Ceph's `teuthology <https://github.com/ceph/teuthology>`__ test framework. 

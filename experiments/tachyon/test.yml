@@ -8,3 +8,11 @@
         name: tachyon-container
         image: michaelsevilla/tachyon:v0.7.1
         state: started
+    - name: copy the configuration file
+
+- hosts: TachyonMaster
+    - name: format tacyhon tfs
+    - name: start tachyon-master
+
+- hosts: all
+    - name: start tachyon-slave
