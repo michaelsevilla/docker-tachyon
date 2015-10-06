@@ -1,0 +1,11 @@
+# Author: Michael Sevilla
+# Create a Tachyon node (with the source code)
+
+- name: pull/install the container
+  docker:
+    name: tachyon-container
+    image: michaelsevilla/hathisar-dev
+    state: present
+
+#- name: push the code
+   

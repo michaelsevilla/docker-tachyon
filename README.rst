@@ -22,3 +22,4 @@ Setup
 #. On the node that this code is on (i.e., our ``experiment master``), run: ./deploy/master.sh
 - this will instantiate an Ansible Docker container
 
+TODO: Figure out how to run sudo! Pull down the container and figure out how to get the tachyon container to launch wtih sudo
