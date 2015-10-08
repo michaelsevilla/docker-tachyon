@@ -4,14 +4,19 @@
 - name: create a tachyon environment variables file
   shell: cp {{ tmpdir }}/tachyon/conf/tachyon-env.sh.template {{ tmpdir }}/tachyon/conf/tachyon-env.sh
 
-- name: set master address to own hostname
-  shell: sed -i "s/export TACHYON_MASTER_ADDRESS=.*/export TACHYON_MASTER_ADDRESS=$(hostname -A | cut -d' ' -f1)/g" {{ tmpdir }}/tachyon/conf/tachyon-env.sh
+- name: set master address to the master
+  lineinfile: dest={{ tmpdir }}/tachyon/conf/tachyon-env.sh 
+              regexp="^export TACHYON_MASTER_ADDRESS=" 
+              insertafter="^#export TACHYON_MASTER_ADDRESS=" 
+              line="export TACHYON_MASTER_ADDRESS="{{ groups['TachyonMaster'][0] }}
 
-- name: set journal folder as a shared undered folder in underfs
-  shell: echo 'tachyon.master.journal.folder=${tachyon.underfs.address}/tachyon/journal/' >> {{ tmpdir }}/tachyon/conf/tachyon-site.properties
+- name: set worker addresses to the workers
+  lineinfile: dest={{ tmpdir }}/tachyon/conf/workers
+              regexp="^localhost"
+              insertafter="^#localhost"
+              line={{ groups['TachyonWorkers'][0] }}
 
- 
-  
-
-
+#- name: set journal folder as a shared undered folder in underfs
+#  lineinfile: dest={{ tmpdir }}/tachyon/conf/tachyon-site.properties
+#              line="tachyon.master.journal.folder=${tachyon.underfs.address}/tachyon/journal/"
 
