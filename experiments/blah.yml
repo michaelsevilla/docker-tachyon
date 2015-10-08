@@ -11,14 +11,14 @@
       image: michaelsevilla/hathisar-dev
       detach: yes
       tty: yes
-      volumes: /tmp/docker:/docker
+      volumes: /tmp/tachyon:/tachyon
       command: sleep infinity
       state: started
-  
+
 #  - name: register new container hostname
 #    add_host: name=lab
 #  
-#- name: test poking that node
+ 
 #  #connection: all
 #  hosts: lab
 #  tasks: 

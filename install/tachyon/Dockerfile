@@ -9,13 +9,7 @@ ENV PATH $PATH:/opt/tachyon/bin
 ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-amd64/ 
 
 RUN mkdir -p /opt && \
-    cd /opt && \
-    wget https://github.com/amplab/tachyon/releases/download/v$TACHYON_VERSION/tachyon-$TACHYON_VERSION-bin.tar.gz && \
-    tar -zvxf tachyon-$TACHYON_VERSION-bin.tar.gz && \
-    rm tachyon-$TACHYON_VERSION-bin.tar.gz && \
     ln -s tachyon-$TACHYON_VERSION tachyon && \
     cd tachyon && \
     #mvn install && \
-    echo Tachyon installed in /opt
-    cp -r /conf/ tachyon/conf
 
