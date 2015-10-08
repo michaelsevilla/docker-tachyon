@@ -4,12 +4,16 @@
 #sudo apt-get install python-setuptools
 #sudo easy_install pip
 #sudo pip install docker-py
-#mkdir /tmp/tachyon
 
+# clear out existing docker containers
+docker rm emaster
+mkdir /tmp/docker
 echo "Installing an Ansible Docker container and dropping you into an 'experiment shell'"
-docker run -t -i  \
+docker run -t -i \
+  --name="emaster" \
   --hostname="experiment_master" \
-  --volume="`pwd`:/hathisar-dev:experiment-master" \
+  --volume="`pwd`:/hathisar-dev/" \
+  --volume="/tmp/:/tmp/" \
   --workdir="/hathisar-dev/experiments" \
-  williamyeh/ansible:ubuntu14.04 \
+  michaelsevilla/hathisar-dev:emaster \
   /bin/bash

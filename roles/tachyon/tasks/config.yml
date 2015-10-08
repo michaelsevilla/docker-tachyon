@@ -1,6 +1,9 @@
 # Author: Michael Sevilla
 # Start Tachyon
 
+- name: create a tachyon environment variables file
+  shell: cp {{ tmpdir }}/tachyon/conf/tachyon-env.sh.template {{ tmpdir }}/tachyon/conf/tachyon-env.sh
+
 - name: set master address to own hostname
   shell: sed -i "s/export TACHYON_MASTER_ADDRESS=.*/export TACHYON_MASTER_ADDRESS=$(hostname -A | cut -d' ' -f1)/g" {{ tmpdir }}/tachyon/conf/tachyon-env.sh
 

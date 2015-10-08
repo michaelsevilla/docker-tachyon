@@ -2,28 +2,26 @@
 # Adapted from: http://www.ibm.com/developerworks/cloud/library/cl-provision-docker-containers-ansible/
 # Create a Tachyon node (with the source code)
 
+- hosts: localhost
+  roles:
+    - emaster
+  tasks: 
+    - name: pull the code
+      include: ../roles/tachyon/tasks/get_src.yml
+      include: ../roles/tachyon/tasks/config.yml
+
 - name: initialize provisioning
   hosts: all
   tasks:
   - name: pull/install the container
     docker:
       name: tachyon-container
-      image: michaelsevilla/hathisar-dev
+      image: michaelsevilla/hathisar-dev:tachyon
       detach: yes
       tty: yes
-      volumes: /tmp/tachyon:/opt/tachyon
+      volumes: /tmp/docker/tachyon:/opt/tachyon
       #command: sleep infinity
       #command: "/opt/tachyon/bin/tachyon-start.sh master -f"
       command: touch /opt/tachyon/file.txt
       state: present
 
-#  - name: register new container hostname
-#    add_host: name=lab
-#  
- 
-#  #connection: all
-#  hosts: lab
-#  tasks: 
-#    - shell: ls
-#  
-#     
