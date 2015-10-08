@@ -13,7 +13,7 @@ RUN echo "===> Adding Ansible's PPA..."  && \
     \
     echo "===> Installing Ansible and wget..."  && \
     apt-get install -y ansible  && \
-    apt-get install -y apt-get && \
+    apt-get install -y wget && \
     \
     \
     echo "===> Removing Ansible PPA..."  && \
