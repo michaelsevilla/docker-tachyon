@@ -1,17 +1,24 @@
 # Author: Michael Sevilla
 # Start Tachyon
 
+- hosts: all
+  roles:
+    - tachyon
+
 #- hosts: TachyonMaster
-#  roles:
-#    - tachyon
 #  tasks:
+#    - name: pull the code
+#      docker: 
+#        name: tachyon-container
+#        image: michaelsevilla/hathisar-dev
+#        state: reloaded 
+#        volumes: /tmp/docker:/docker
+#        command: echo "hellO"
+      
     #- include: ../roles/tachyon/tasks/get_src.yml
     #- include: ../roles/tachyon/tasks/config.yml
     #- include: ../roles/tachyon/tasks/pkg_src.yml
 
-- hosts: all
-  roles:
-    - tachyon
 
 #- hosts: all
 #  tasks:

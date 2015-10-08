@@ -1,0 +1,27 @@
+# Author: Michael Sevilla
+# Adapted from: http://www.ibm.com/developerworks/cloud/library/cl-provision-docker-containers-ansible/
+# Create a Tachyon node (with the source code)
+
+- name: initialize provisioning
+  hosts: all
+  tasks:
+  - name: pull/install the container
+    docker:
+      name: tachyon-container
+      image: michaelsevilla/hathisar-dev
+      detach: yes
+      tty: yes
+      volumes: /tmp/docker:/docker
+      command: sleep infinity
+      state: started
+  
+#  - name: register new container hostname
+#    add_host: name=lab
+#  
+#- name: test poking that node
+#  #connection: all
+#  hosts: lab
+#  tasks: 
+#    - shell: ls
+#  
+#     
