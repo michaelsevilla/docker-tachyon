@@ -11,9 +11,11 @@
       image: michaelsevilla/hathisar-dev
       detach: yes
       tty: yes
-      volumes: /tmp/tachyon:/tachyon
-      command: sleep infinity
-      state: started
+      volumes: /tmp/tachyon:/opt/tachyon
+      #command: sleep infinity
+      #command: "/opt/tachyon/bin/tachyon-start.sh master -f"
+      command: touch /opt/tachyon/file.txt
+      state: present
 
 #  - name: register new container hostname
 #    add_host: name=lab
