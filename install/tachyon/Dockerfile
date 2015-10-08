@@ -10,6 +10,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-amd64/
 
 RUN mkdir -p /opt && \
     ln -s tachyon-$TACHYON_VERSION tachyon && \
-    cd tachyon && \
+    cd tachyon
     #mvn install && \
 
