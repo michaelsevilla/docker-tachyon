@@ -8,8 +8,6 @@ ENV TACHYON_VERSION 0.7.1
 ENV PATH $PATH:/opt/tachyon/bin
 ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-amd64/ 
 
-RUN mkdir -p /opt && \
-    ln -s tachyon-$TACHYON_VERSION tachyon && \
-    cd tachyon
+RUN mkdir -p /opt
     #mvn install && \
 
