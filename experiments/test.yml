@@ -1,48 +1,42 @@
 # Author: Michael Sevilla
-# Start Tachyon
+# Adapted from: http://www.ibm.com/developerworks/cloud/library/cl-provision-docker-containers-ansible/
+# Create a Tachyon node (with the source code)
 
-#- hosts: all
-#  roles:
-#    - tachyon
-
-- hosts: localhost
-  tasks:
-    - name: pull the code
-      docker: 
-        name: tachyon-container
-        image: michaelsevilla/hathisar-dev
-        state: reloaded 
-        volumes: /tmp/docker:/docker
-        command: echo "hellO"
-      
-    #- include: ../roles/tachyon/tasks/get_src.yml
-    #- include: ../roles/tachyon/tasks/config.yml
-    #- include: ../roles/tachyon/tasks/pkg_src.yml
-
-
-#- hosts: all
-#  tasks:
-#    - name: download Tachyon source
-#    - name: create Tachyon container
-#      docker:
-#        name: tachyon-container
-#        image: michaelsevilla/hathisar-dev
-#        state: present
-
-        
-
-#- hosts: TachyonMaster
-#  tasks:
-#    - name: start the tachyon master
-#      command: docker run --env="JAVA_HOME=blah" michaelsevilla/hathisar-dev /opt/tachyon-0.7.1/bin/tachyon-start.sh master -f
-#      #command: docker run --env="JAVA_HOME=blah" michaelsevilla/hathisar-dev env
-     
-
-#- hosts: TachyonMaster
-#  tasks:
-#    - name: format tacyhon tfs
-#    - name: start tachyon-master
+#- hosts: localhost
+#  roles: [emaster]
+#  tasks: 
+#    - name: pull the tachyon code
+#      include: ../roles/tachyon/tasks/get_src.yml
 #
-#- hosts: all
-#  tasks:
-#    - name: start tachyon-slave
+#    - name: configure tachyon
+#      include: ../roles/tachyon/tasks/config.yml
+#
+#    - name: check to see if we already packaged the code
+#      stat: path={{ tmpdir }}/tachyon.tar.gz
+#      register: p
+#
+#    - name: package the code 
+#      shell: cd {{ tmpdir }}; tar czvf tachyon.tar.gz tachyon
+#      when: p.stat.exists == False
+#
+#    - name: delete all evidence
+#      file: path={{ tmpdir }}/tachyon state=absent
+
+- name: initialize provisioning
+  hosts: all
+  roles: [tachyon]
+  tasks:
+#    - name: put the code over there
+#      unarchive: src={{ tmpdir }}/tachyon.tar.gz 
+#                 dest={{ tmpdir }}/
+
+    - name: pull/install the container
+      docker:
+        name: tachyon-container
+        image: michaelsevilla/hathisar-dev:tachyon
+        detach: yes
+        tty: yes
+        volumes: /tmp/docker/tachyon:/opt/tachyon
+        command: "/opt/tachyon/bin/tachyon-start.sh master -f"
+        state: started
+

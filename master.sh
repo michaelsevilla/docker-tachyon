@@ -6,7 +6,6 @@
 #sudo pip install docker-py
 
 # clear out existing docker containers
-docker rm emaster
 mkdir /tmp/docker >> /dev/null 2>&1
 echo "Installing an Ansible Docker container and dropping you into an 'experiment shell'"
 docker run -t -i \
