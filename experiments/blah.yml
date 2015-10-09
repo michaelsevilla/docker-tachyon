@@ -11,8 +11,13 @@
     - name: configure tachyon
       include: ../roles/tachyon/tasks/config.yml
 
-    - name: package the code
+    - name: check to see if we already packaged the code
+      stat: path={{ tmpdir }}/tachyon.tar.gz
+      register: p
+
+    - name: package the code 
       shell: cd {{ tmpdir }}; tar czvf tachyon.tar.gz tachyon
+      when: p.stat.exists == False
 
     - name: delete all evidence
       file: path={{ tmpdir }}/tachyon state=absent
@@ -33,7 +38,7 @@
         tty: yes
         volumes: /tmp/docker/tachyon:/opt/tachyon
         #command: sleep infinity
-        #command: "/opt/tachyon/bin/tachyon-start.sh master -f"
-        command: touch /opt/tachyon/file.txt
+        command: "/opt/tachyon/bin/tachyon-start.sh master -f"
+        #command: touch /opt/tachyon/file.txt
         state: present
 
