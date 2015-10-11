@@ -1,0 +1,3 @@
+[submodule "install/cephdev"]
+	path = install/cephdev
+	url = https://github.com/ivotron/docker-cephdev.git
