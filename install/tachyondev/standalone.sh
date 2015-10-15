@@ -8,10 +8,9 @@ docker run \
   -d \
   -p 2222:22 \
   -e AUTHORIZED_KEYS="`cat ~/.ssh/id_rsa.pub`" \
-  -v `pwd`:/ceph \
   -v /dev:/dev \
-  -v /tmp/ceph_data/$RANDOM:/var/lib/ceph \
+  -v /tmp/docker/tachyon:/opt/tachyon \
   --cap-add=SYS_ADMIN --privileged \
   --device /dev/fuse \
-  hathisar-dev/tachyon 
+  tachyon 
 
