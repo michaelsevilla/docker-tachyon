@@ -22,4 +22,19 @@ Setup
 #. On the node that this code is on (i.e., our ``experiment master``), run: ./deploy/master.sh
 - this will instantiate an Ansible Docker container
 
+FAQ
+========
+
+Q: The container fails to pull down Ubuntu repos and can't seem to reach the internet.
+
+A: This connectivity issue is fixed with:
+sudo apt-get install bridge-utils
+pkill docker
+iptables -t nat -F
+ifconfig docker0 down
+brctl delbr docker0
+sudo service docker start
+
+according to: http://serverfault.com/questions/642981/docker-containers-cant-resolve-dns-on-ubuntu-14-04-desktop-host
+
 TODO: Figure out how to run sudo! Pull down the container and figure out how to get the tachyon container to launch wtih sudo

@@ -13,9 +13,5 @@ docker run \
   -v /tmp/ceph_data/$RANDOM:/var/lib/ceph \
   --cap-add=SYS_ADMIN --privileged \
   --device /dev/fuse \
-  tachyon 
+  hathisar-dev/tachyon 
 
-
-
-  #-e SSHD_PORT=2222 \
-#  --net=host \
