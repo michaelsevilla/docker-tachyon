@@ -27,7 +27,7 @@ FAQ
 
 Q: The container fails to pull down Ubuntu repos and can't seem to reach the internet.
 
-A: This connectivity issue is fixed with:
+A: This connectivity issue [1] is fixed with:
 sudo apt-get install bridge-utils
 pkill docker
 iptables -t nat -F
@@ -35,6 +35,14 @@ ifconfig docker0 down
 brctl delbr docker0
 sudo service docker start
 
-according to: http://serverfault.com/questions/642981/docker-containers-cant-resolve-dns-on-ubuntu-14-04-desktop-host
+
+Q: On Centos6, I get:
+NameError: global name 'DEFAULT_DOCKER_API_VERSION' is not defined
+
+A: Centos6 is not supported but a workaround [2] is to yum install python-docker-py.x86_64
+
+[1] http://serverfault.com/questions/642981/docker-containers-cant-resolve-dns-on-ubuntu-14-04-desktop-host
+[2] https://github.com/ansible/ansible-modules-core/issues/1792
+
 
 TODO: Figure out how to run sudo! Pull down the container and figure out how to get the tachyon container to launch wtih sudo

@@ -1,6 +1,5 @@
 # Author: Michael Sevilla
-# Adapted from: http://www.ibm.com/developerworks/cloud/library/cl-provision-docker-containers-ansible/
-# Create a Tachyon node (with the source code)
+# Create a Tachyon development node (with the source code)
 
 #- hosts: localhost
 #  roles: [emaster]
@@ -26,17 +25,22 @@
   hosts: all
   roles: [tachyon]
   tasks:
-#    - name: put the code over there
-#      unarchive: src={{ tmpdir }}/tachyon.tar.gz 
-#                 dest={{ tmpdir }}/
+    #- name: put the code over there
+    #  unarchive: src={{ tmpdir }}/tachyon.tar.gz 
+    #             dest={{ tmpdir }}/
 
-    - name: pull/install the container
+    - name: pull/install a tachyon container
       docker:
-        name: tachyon-container
+        name: tachyon
         image: michaelsevilla/hathisar-dev:tachyon
         detach: yes
         tty: yes
-        volumes: /tmp/docker/tachyon:/opt/tachyon
-        command: "/opt/tachyon/bin/tachyon-start.sh master -f"
+        expose: 22
+        ports: 0.0.0.0:2222:22
+        volumes: /tmp/docker/tachyon:/tachyon
+        #command: "/opt/tachyon/bin/tachyon-start.sh master -f"
         state: started
+
+  
+      
 

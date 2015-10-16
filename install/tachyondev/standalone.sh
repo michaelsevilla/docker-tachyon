@@ -6,11 +6,9 @@ docker ps -aq | xargs docker rm -f  >> /dev/null 2>&1
 docker run \
   --name remote0 \
   -d \
-  -p 2222:22 \
+  -e SSHD_PORT=2222 \
   -e AUTHORIZED_KEYS="`cat ~/.ssh/id_rsa.pub`" \
-  -v /dev:/dev \
-  -v /tmp/docker/tachyon:/opt/tachyon \
+  --net=host \
+  -v /tmp/docker/tachyon:/tachyon \
   --cap-add=SYS_ADMIN --privileged \
-  --device /dev/fuse \
-  tachyon 
-
+  tachyon

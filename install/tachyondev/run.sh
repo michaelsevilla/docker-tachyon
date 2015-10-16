@@ -2,6 +2,7 @@
 
 # this as tutumcloud/tutum-ubuntu plus our mods for taking the sshd
 # port number from an env variable
+echo "=> Starting the tachyon master"
 
 if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
     echo "=> Found authorized keys"
@@ -32,5 +33,13 @@ if [ -z "$SSHD_PORT" ]; then
   SSHD_PORT=22
 fi
 sed -i "s/Port.*/Port ${SSHD_PORT}/" /etc/ssh/sshd_config
+
+#if [ ! -d /tachyon ]; then
+#  echo ""
+#  echo "ERROR: Expecting tachyon source folder in /tachyon"
+#  exit 1
+#fi
+echo "=> Starting the tachyon master"
+#/opt/tachyon/bin/tachyon-start.sh master -f
 
 exec /usr/sbin/sshd -D
