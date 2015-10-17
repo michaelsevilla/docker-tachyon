@@ -15,6 +15,8 @@ Directory Structure
 
 - ``install``: this folder has the Docker image scripts for installing the systems. Stuff in here gets built into an image and automatically uploaded to the Docker Hub.
 
+- ``bin``: scripts that setup a minimal environment.
+
 Setup
 ========
 
@@ -41,8 +43,16 @@ NameError: global name 'DEFAULT_DOCKER_API_VERSION' is not defined
 
 A: Centos6 is not supported but a workaround [2] is to yum install python-docker-py.x86_64
 
+Q: I'm getting error for "chpasswd: (user root) pam_chauthtok() failed, error: System error"
+
+A: This is a kernel bug, according to [3].
+
 [1] http://serverfault.com/questions/642981/docker-containers-cant-resolve-dns-on-ubuntu-14-04-desktop-host
 [2] https://github.com/ansible/ansible-modules-core/issues/1792
+[3] https://github.com/docker/docker/issues/5704
+
+
+
 
 
 TODO: Figure out how to run sudo! Pull down the container and figure out how to get the tachyon container to launch wtih sudo

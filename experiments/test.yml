@@ -1,33 +1,33 @@
 # Author: Michael Sevilla
 # Create a Tachyon development node (with the source code)
 
-#- hosts: localhost
-#  roles: [emaster]
-#  tasks: 
-#    - name: pull the tachyon code
-#      include: ../roles/tachyon/tasks/get_src.yml
-#
-#    - name: configure tachyon
-#      include: ../roles/tachyon/tasks/config.yml
-#
-#    - name: check to see if we already packaged the code
-#      stat: path={{ tmpdir }}/tachyon.tar.gz
-#      register: p
-#
-#    - name: package the code 
-#      shell: cd {{ tmpdir }}; tar czvf tachyon.tar.gz tachyon
-#      when: p.stat.exists == False
-#
-#    - name: delete all evidence
-#      file: path={{ tmpdir }}/tachyon state=absent
+- hosts: localhost
+  roles: [emaster]
+  tasks: 
+    - name: pull the tachyon code
+      include: ../roles/tachyon/tasks/get_src.yml
+
+    - name: configure tachyon
+      include: ../roles/tachyon/tasks/config.yml
+
+    - name: check to see if we already packaged the code
+      stat: path={{ tmpdir }}/tachyon.tar.gz
+      register: p
+
+    - name: package the code 
+      shell: cd {{ tmpdir }}; tar czvf tachyon.tar.gz tachyon
+      when: p.stat.exists == False
+
+    - name: delete all evidence
+      file: path={{ tmpdir }}/tachyon state=absent
 
 - name: initialize provisioning
   hosts: all
   roles: [tachyon]
   tasks:
-    #- name: put the code over there
-    #  unarchive: src={{ tmpdir }}/tachyon.tar.gz 
-    #             dest={{ tmpdir }}/
+    - name: put the code over there
+      unarchive: src={{ tmpdir }}/tachyon.tar.gz 
+                 dest={{ tmpdir }}/
 
     - name: pull/install a tachyon container
       docker:
