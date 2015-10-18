@@ -31,14 +31,16 @@
 
     - name: pull/install a tachyon container
       docker:
-        name: tachyon
         image: michaelsevilla/hathisar-dev:tachyon
+        name: tachyon
         detach: yes
         tty: yes
-        expose: 22
-        ports: 0.0.0.0:2222:22
+        env:
+          SSHD_PORT: 2222
+          AUTHORIZED_KEYS: "`cat ~/.ssh/id_rsa.pub`"
+        net: host
         volumes: /tmp/docker/tachyon:/tachyon
-        #command: "/opt/tachyon/bin/tachyon-start.sh master -f"
+        privileged: yes
         state: started
 
   

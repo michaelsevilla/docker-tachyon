@@ -11,4 +11,5 @@ docker run \
   --net=host \
   -v /tmp/docker/tachyon:/tachyon \
   --cap-add=SYS_ADMIN --privileged \
-  tachyon
+  test
+  #michaelsevilla/hathisar-dev:tachyon
