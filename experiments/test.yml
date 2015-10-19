@@ -37,7 +37,6 @@
         tty: yes
         env:
           SSHD_PORT: 2222
-          AUTHORIZED_KEYS: "`cat ~/.ssh/id_rsa.pub`"
         net: host
         volumes: /tmp/docker/tachyon:/tachyon
         privileged: yes

@@ -29,7 +29,7 @@ RUN sed -i "s/UsePAM.*/UsePAM yes/" /etc/ssh/sshd_config && \
 # create ssh keys
 RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -N '' && \
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-    echo "Port 2222" >> /etc/ssh_config
+    echo "Port" >> /etc/ssh
 
 # override tutum's run.sh with our own
 ADD run.sh /run.sh
