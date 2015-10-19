@@ -11,10 +11,10 @@ RUN echo "===> Adding Ansible's PPA..."  && \
     DEBIAN_FRONTEND=noninteractive  apt-get update  && \
     \
     \
-    echo "===> Installing Ansible and wget..."  && \
+    echo "===> Installing experiment master stuff: ansible, wget, vim..."  && \
     apt-get install -y ansible  && \
     apt-get install -y wget && \
-    \
+    apt-get install -y vim && \
     \
     echo "===> Removing Ansible PPA..."  && \
     rm -rf /var/lib/apt/lists/*  /etc/apt/sources.list.d/ansible.list  && \
@@ -22,10 +22,7 @@ RUN echo "===> Adding Ansible's PPA..."  && \
     \
     echo "===> Adding hosts for convenience..."  && \
     echo '[local]\nlocalhost\n' > /etc/ansible/hosts && \
-    ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa && \
-    \
-    echo "===> Adding vim so the experiment master can edit experiments..." && \
-    apt-get install -y vim
+    ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa
 
 
 # default command: display Ansible version
