@@ -39,6 +39,4 @@ if [ ! -d /tachyon ]; then
   exit 1
 fi
 
-/tachyon/bin/tachyon-start.sh master -f
-
 exec /usr/sbin/sshd -D
