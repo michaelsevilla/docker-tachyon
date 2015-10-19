@@ -27,6 +27,10 @@ Setup
 FAQ
 ========
 
+Q: Why is this all so insecure
+
+A: Because I couldn't figure out how to initialize docker containers with specific SSH keys
+
 Q: The container fails to pull down Ubuntu repos and can't seem to reach the internet.
 
 A: This connectivity issue [1] is fixed with:
@@ -50,9 +54,6 @@ A: This is a kernel bug, according to [3].
 [1] http://serverfault.com/questions/642981/docker-containers-cant-resolve-dns-on-ubuntu-14-04-desktop-host
 [2] https://github.com/ansible/ansible-modules-core/issues/1792
 [3] https://github.com/docker/docker/issues/5704
-
-
-
 
 
 TODO: Figure out how to run sudo! Pull down the container and figure out how to get the tachyon container to launch wtih sudo

@@ -21,7 +21,11 @@ RUN echo "===> Adding Ansible's PPA..."  && \
     \
     \
     echo "===> Adding hosts for convenience..."  && \
-    echo '[local]\nlocalhost\n' > /etc/ansible/hosts
+    echo '[local]\nlocalhost\n' > /etc/ansible/hosts && \
+    ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa && \
+    \
+    echo "===> Adding vim so the experiment master can edit experiments..." && \
+    apt-get install -y vim
 
 
 # default command: display Ansible version
