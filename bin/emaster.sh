@@ -15,7 +15,7 @@ docker run -it \
   --volume="$(dirname `pwd`):/hathisar-dev/" \
   --volume="/tmp/:/tmp/" \
   --workdir="/hathisar-dev/experiments" \
-  emaster-test \
+  michaelsevilla/hathisar-dev:emaster \
   ansible-playbook -k pushkeys.yml
 
 docker rm emaster
@@ -26,7 +26,7 @@ docker run -it \
   --volume="$(dirname `pwd`):/hathisar-dev/" \
   --volume="/tmp/:/tmp/" \
   --workdir="/hathisar-dev/experiments" \
-  emaster-test \
+  michaelsevilla/hathisar-dev:emaster \
   /bin/bash
   
 

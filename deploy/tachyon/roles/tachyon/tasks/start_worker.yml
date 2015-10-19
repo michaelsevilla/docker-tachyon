@@ -1,7 +1,0 @@
-# Adapted from Tachyon project: https://github.com/amplab/tachyon.git
-# Author: Michael Sevilla
-
-- name: start tachyon worker
-  shell: "{{ tachyon }}/bin/tachyon-start.sh worker SudoMount"
-
-# vim :set filetype=ansible.yaml:

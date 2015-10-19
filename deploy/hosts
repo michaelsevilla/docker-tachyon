@@ -1,6 +1,0 @@
-[TachyonMaster]
-dl360pg8-331.3pardata.com ansible_ssh_pass=hpinvent ansible_ssh_user=root
-
-[TachyonWorkers]
-dl360pg8-331.3pardata.com ansible_ssh_pass=hpinvent ansible_ssh_user=root
-
