@@ -32,6 +32,13 @@ if [ -z "$SSHD_PORT" ]; then
   SSHD_PORT=22
 fi
 sed -i "s/Port.*/Port ${SSHD_PORT}/" /etc/ssh/sshd_config
+echo "    Port ${SSHD_PORT}" >> /etc/ssh/ssh_config
+
+echo "=> Add passwordless login for myself"# create ssh keys
+ssh-keygen -t rsa -f ~/.ssh/id_rsa -N ''
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+
+
 
 if [ ! -d /tachyon ]; then
   echo ""

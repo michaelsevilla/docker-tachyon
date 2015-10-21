@@ -26,10 +26,5 @@ RUN sed -i "s/UsePAM.*/UsePAM yes/" /etc/ssh/sshd_config && \
     sed -i "s/Defaults.*env_reset//" /etc/sudoers && \
     sed -i "s/Defaults.*secure_path.*//" /etc/sudoers 
 
-# create ssh keys
-RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -N '' && \
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-    echo "Port 2222" >> /etc/ssh/ssh_config 
-
 # override tutum's run.sh with our own
 ADD run.sh /run.sh
