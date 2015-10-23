@@ -18,7 +18,8 @@ fi
 if [ "$(ls -A /tachyon)" ]; then
   cd /tachyon 
   #exec mvn -DskipTests install
-  exec mvn -DskipTests clean package
+  #exec mvn -DskipTests clean package
+  exec mvn -Prepl-bin -Pdeb clean package
 else
   echo "/tachyon is empty :("
 fi
