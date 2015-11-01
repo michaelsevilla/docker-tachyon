@@ -7,6 +7,13 @@ RUN apt-get update && apt-get install -y git openjdk-7-jdk curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /debian
 
+# get the tachyon code
+RUN cd / && \
+    git clone https://github.com/amplab/tachyon.git && \
+    cd tachyon && \
+    git checkout -b branch-0.8 remotes/origin/branch-0.8 && \
+    mvn install -DskipTests
+
 ADD build /
 RUN chmod 755 /build
 ENTRYPOINT ["/build"]

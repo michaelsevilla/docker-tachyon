@@ -6,22 +6,8 @@ Quickstart
 
 To build Tachyon:
 
-    docker ps -aq | xargs docker stop
-    docker ps -aq | xargs docker rm
     docker run -it \
         --name tachyonbuild-test \
         -v /tmp/docker/tachyon:/tachyon \
-        tachyonbuild-test
+        michaelsevilla/tachyondev-build
     
-To start Tachyon server:
-
-    docker ps -aq | xargs docker stop
-    docker ps -aq | xargs docker rm
-    docker run -it \
-        --name tachyonbuild-test \
-        --net=host \
-        -v /tmp/docker/tachyon:/tachyon \
-        --entrypoint=/bin/bash \
-        tachyonbuild-test
-
-

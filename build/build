@@ -2,24 +2,9 @@
 
 set -e
 
-if [ -z "$GIT_URL"] ; then
-  GIT_URL="https://github.com/amplab/tachyon.git"
-fi
-
-# build source code if /tachyon folder exists
-if [ -n "$SHA1_OR_REF" ] ; then
-  if [ ! -d /tachyon/.git ] ; then
-    cd /; git clone $GIT_URL; cd /tachyon
-    git checkout -b dev $SHA1_OR_REF
-    git submodule update --init --recursive
-  fi
-fi
-
 if [ "$(ls -A /tachyon)" ]; then
   cd /tachyon 
-  #exec mvn -DskipTests install
-  #exec mvn -DskipTests clean package
-  exec mvn -Prepl-bin -Pdeb clean package
+  exec mvn -DskipTests install
 else
   echo "/tachyon is empty :("
 fi
