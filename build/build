@@ -4,7 +4,14 @@ set -e
 
 if [ "$(ls -A /tachyon)" ]; then
   cd /tachyon 
-  exec mvn -DskipTests install
+  if [ ! -z "$SHA1_OR_REF" ]; then
+    git checkout master
+    git branch -D dev
+    git checkout -b dev $SHA1_OR_REF
+  fi
 else
   echo "/tachyon is empty :("
+  exit 1
 fi
+
+exec mvn -DskipTests install

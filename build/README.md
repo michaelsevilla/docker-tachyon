@@ -7,7 +7,7 @@ Quickstart
 To build Tachyon:
 
     docker run -it \
-        --name tachyonbuild-test \
+        --name tachyondev-build \
         -v /tmp/docker/tachyon:/tachyon \
         michaelsevilla/tachyondev-build
     
