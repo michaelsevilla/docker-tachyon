@@ -6,7 +6,9 @@ if [ "$(ls -A /tachyon)" ]; then
   cd /tachyon 
   if [ ! -z "$SHA1_OR_REF" ]; then
     git checkout master
-    git branch -D dev
+    if [ `git branch --list dev`]; then
+      git branch -D dev
+    fi
     git checkout -b dev $SHA1_OR_REF
   fi
 else
