@@ -2,6 +2,26 @@
 
 set -e
 
+if [ -z "$GIT_URL"] ; then
+  GIT_URL="https://github.com/amplab/tachyon.git"
+fi
+
+if [ -n "$SHA1_OR_REF" ] ; then
+  if [ ! -d /tachyon/.git ] ; then
+    cd /
+    git clone $GIT_URL
+  fi
+  cd /ceph
+  git clean -fd
+  git checkout master
+  if [ `git branch --list $((SHA1_OR_REF))` ]; then
+    git branch -D $SHA1_OR_REF 
+  fi
+  git clean -fd
+  git submodule update --init --recursive
+fi
+
+# build source code if /tachyon folder exists
 if [ "$(ls -A /tachyon)" ]; then
   cd /tachyon 
   if [ ! -z "$SHA1_OR_REF" ]; then
@@ -17,3 +37,4 @@ else
 fi
 
 exec mvn -DskipTests install
+exit 0
