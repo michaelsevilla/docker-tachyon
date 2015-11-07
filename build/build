@@ -6,21 +6,6 @@ if [ -z "$GIT_URL"] ; then
   GIT_URL="https://github.com/amplab/tachyon.git"
 fi
 
-if [ -n "$SHA1_OR_REF" ] ; then
-  if [ ! -d /tachyon/.git ] ; then
-    cd /
-    git clone $GIT_URL
-  fi
-  cd /ceph
-  git clean -fd
-  git checkout master
-  if [ `git branch --list $((SHA1_OR_REF))` ]; then
-    git branch -D $SHA1_OR_REF 
-  fi
-  git clean -fd
-  git submodule update --init --recursive
-fi
-
 # build source code if /tachyon folder exists
 if [ "$(ls -A /tachyon)" ]; then
   cd /tachyon 
@@ -34,6 +19,11 @@ if [ "$(ls -A /tachyon)" ]; then
 else
   echo "/tachyon is empty :("
   exit 1
+fi
+
+# add jars to the maven install
+if [ ! -z "$JAR_ARGS" ]; then
+  mvn install:install-file $JAR_ARGS
 fi
 
 exec mvn -DskipTests install
