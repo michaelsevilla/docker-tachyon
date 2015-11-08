@@ -14,6 +14,12 @@ RUN echo "===> Installing jxio stuff..."  && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-amd64/
+RUN echo "===> Build jxio..." && \
+    cd / && \
+    git clone https://github.com/accelio/JXIO.git && \
+    cd /JXIO && \
+    git clean -fd && \
+    ./build.sh
 
 # * modify sshd conf
 # * workaround for the way ubuntu deals with env for sudo
