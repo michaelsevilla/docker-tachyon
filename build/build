@@ -26,5 +26,5 @@ if [ ! -z "$JAR_ARGS" ]; then
   mvn install:install-file $JAR_ARGS
 fi
 
-exec mvn -DskipTests install
+exec mvn clean package -DskipTests $JAR_ARGS
 exit 0
